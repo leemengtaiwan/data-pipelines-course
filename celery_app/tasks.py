@@ -1,5 +1,5 @@
 ''' Task module for showing celery functionality. '''
-from pandas_datareader import data
+# from pandas_datareader import data
 from celeryapp import app
 from urllib.error import HTTPError, URLError
 import pandas as pd
@@ -18,18 +18,20 @@ def get_stock_info(stock, start, end, source='yahoo'):
         returns:
             json
     '''
-    logging.debug('start and end types are: %s %s', type(start), type(end))
-    df = data.DataReader(stock, source, start, end)
-    df['Stock'] = stock
-    agg = df.groupby('Stock').agg({
-        'Open': ['min', 'max', 'mean', 'median'],
-        'Adj Close': ['min', 'max', 'mean', 'median'],
-        'Close': ['min', 'max', 'mean', 'median'],
-        'High': ['min', 'max', 'mean', 'median'],
-        'Low': ['min', 'max', 'mean', 'median'],
-    })
-    agg.columns = [' '.join(col).strip() for col in agg.columns.values]
-    return agg.to_json()
+    # logging.debug('start and end types are: %s %s', type(start), type(end))
+    # df = data.DataReader(stock, source, start, end)
+    # df['Stock'] = stock
+    # agg = df.groupby('Stock').agg({
+    #     'Open': ['min', 'max', 'mean', 'median'],
+    #     'Adj Close': ['min', 'max', 'mean', 'median'],
+    #     'Close': ['min', 'max', 'mean', 'median'],
+    #     'High': ['min', 'max', 'mean', 'median'],
+    #     'Low': ['min', 'max', 'mean', 'median'],
+    # })
+    # agg.columns = [' '.join(col).strip() for col in agg.columns.values]
+    # return agg.to_json()
+
+    return {"result": "successed!"}
 
 
 def calc_ratio(price, compare):
